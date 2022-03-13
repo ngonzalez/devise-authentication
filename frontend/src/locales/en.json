@@ -1,0 +1,47 @@
+{
+  "en": {
+    "home": {
+      "title": "Home",
+      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "not_signed_in": "You are not signed in"
+    },
+    "navbar": {
+      "home": "Home",
+      "register": "Register",
+      "sign_in": "Sign in",
+      "sign_out": "Sign out",
+      "sign_out_success": "Signed out successfully",
+      "sign_out_failure": "Failed to sign out user"
+    },
+    "users": {
+      "edit": {
+        "title": "Edit User",
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "alias_name": "Pseudo (3 lettres)",
+        "submit": "Update",
+        "success": "Account updated successfully",
+        "failure": "Failed to update account"
+      },
+      "register": {
+        "title": "Sign up",
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "alias_name": "Pseudo (3 lettres)",
+        "email": "E-Mail",
+        "password": "Password",
+        "submit": "Register",
+        "success": "Account created successfully",
+        "failure": "Failed to create account"
+      },
+      "sign_in": {
+        "title": "Sign in",
+        "email": "E-Mail",
+        "password": "Password",
+        "submit": "Sign In",
+        "success": "Signed in successfully",
+        "failure": "Failed to authenticate account"
+      }
+    }
+  }
+}
