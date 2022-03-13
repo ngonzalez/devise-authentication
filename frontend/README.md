@@ -1,31 +1,7 @@
+# Vue 3 + Vite
 
-#### Install node LTS
-```
-npm install -g n
-sudo n lts
-```
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-#### Run linter
-```
-npm install eslint --save-dev
-npm init @eslint/config
-npm run lint
-```
+## Recommended IDE Setup
 
-#### Start development server
-```
-npm run dev
-```
-
-#### Install dependencies
-```
-yarn add @vue/cli
-yarn add @vue/apollo-option @vue/apollo-components
-yarn add vue-router@4
-yarn add graphql graphql-tag @apollo/client
-yarn add vue-apollo apollo-boost @vue/apollo-composable @vue/apollo-util
-yarn add vuex-persistedstate
-yarn add vue-cookies
-yarn add vue-toast-notification
-yarn add vue-i18n
-```
+- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)

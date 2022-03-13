@@ -11,17 +11,11 @@ export default createStore({
     },
   },
   actions: {
-    signIn(context, user) {
-      context.commit('signIn', user);
+    setUser(context, user) {
+      context.commit('setUser', user);
     },
-    signOut(context) {
-      context.commit('signOut');
-    },
-    editUser(context, user) {
-      context.commit('editUser', user);
-    },
-    registerUser(context, user) {
-      context.commit('registerUser', user);
+    clearUser(context) {
+      context.commit('clearUser');
     },
   },
   plugins: [
@@ -35,17 +29,11 @@ export default createStore({
     }),
   ],
   mutations: {
-    signIn(state, user) {
+    setUser(state, user) {
       state.user = user;
     },
-    signOut(state) {
+    clearUser(state) {
       state.user = {};
-    },
-    editUser(state, user) {
-      state.user = user;
-    },
-    registerUser(state, user) {
-      state.user = user;
     },
   }
 })

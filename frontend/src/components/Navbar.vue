@@ -55,26 +55,27 @@
 
 <script>
 import _get from 'lodash/get';
-import signOutMutation from '../mutations/signOut';
-import { AUTH_TOKEN_KEY } from '../configuration/appConstants';
-import { mapActions } from 'vuex';
+import signOut from '../mutations/signOut';
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'Navbar',
   methods: {
-    ...mapActions(['signOut']),
+    ...mapMutations(['clearUser']),
     handleSignOut() {
-      return signOutMutation({ apollo: this.$apollo, token: localStorage.getItem(AUTH_TOKEN_KEY) })
-        .then(response => _get(response, 'data.signOut', {}))
+      signOut({
+        apollo: this.$apollo,
+        token: this.user.authenticationToken
+      }).then(response => _get(response, 'data.signOut', {}))
         .then(response => {
           if (response.success) {
             this.$toast.info(this.$t('navbar.sign_out_success'));
           } else {
             this.$toast.warning(this.$t('navbar.sign_out_failure'));
           }
-          this.signOut();
+          this.clearUser();
           this.$router.push({ name: 'sign_in' });
         }).catch(error => {
-          this.$toast.warning(error);
           this.errors = [error];
         });
     },

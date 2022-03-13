@@ -36,9 +36,9 @@
 
 <script>
 import { mapMutations } from 'vuex';
-import signIn from '../../mutations/signIn.js';
-import { AUTH_TOKEN_KEY } from '../../configuration/appConstants';
+import signIn from '../../mutations/signIn';
 import _get from 'lodash/get';
+
 export default {
   name: 'SignInUser',
   data() {
@@ -48,27 +48,25 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['signIn']),
+    ...mapMutations(['setUser']),
     handleSignIn() {
       signIn({
         apollo: this.$apollo,
         ...this.form,
       }).then(response => _get(response, 'data.signIn', {}))
-      .then(response => {
-        if (response.success) {
-          this.$toast.success(this.$t('users.sign_in.success'));
-          const user = response.user;
-          localStorage.setItem(AUTH_TOKEN_KEY, user.authenticationToken);
-          this.signIn(user);
-          this.$router.push({ name: 'home' });
-        } else {
-          this.$toast.warning(this.$t('users.sign_in.failure'));
-          this.errors = this.errorMessages(response.data.signIn.errors);
-        }
-      }).catch(error => {
-        this.$toast.warning(error);
-        this.errors = [error];
-      });
+        .then(response => {
+          if (response.success) {
+            this.$toast.success(this.$t('users.sign_in.success'));
+            this.setUser(response.user);
+            this.$router.push({ name: 'home' });
+          } else {
+            this.$toast.warning(this.$t('users.sign_in.failure'));
+            this.errors = this.errorMessages(response.data.signIn.errors);
+          }
+        }).catch(error => {
+          this.$toast.warning(error);
+          this.errors = [error];
+        });
     },
   },
 };

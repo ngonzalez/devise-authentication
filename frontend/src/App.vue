@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="wrapper">
@@ -16,6 +15,7 @@
 
 <script>
 import Navbar from './components/Navbar.vue';
+
 export default {
   name: 'ApplicationRootComponent',
   components: { Navbar },

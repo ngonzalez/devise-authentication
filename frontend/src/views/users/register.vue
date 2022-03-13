@@ -68,8 +68,8 @@
 <script>
 import { mapMutations } from 'vuex';
 import registerUser from '../../mutations/registerUser';
-import { AUTH_TOKEN_KEY } from '../../configuration/appConstants';
 import _get from 'lodash/get';
+
 export default {
   name: 'RegisterUser',
   data() {
@@ -79,7 +79,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['registerUser']),
+    ...mapMutations(['setUser']),
     upper(e) {
       e.target.value = e.target.value.toUpperCase()
     },
@@ -88,21 +88,19 @@ export default {
         apollo: this.$apollo,
         ...this.form,
       }).then(response => _get(response, 'data.registerUser', {}))
-      .then(response => {
-        if (response.success) {
-          let user = response.user;
-          localStorage.setItem(AUTH_TOKEN_KEY, user.authenticationToken);
-          this.registerUser(user);
-          this.$router.push({ name: 'home' });
-          this.$toast.info(this.$t('users.register.success'));
-        } else {
-          this.$toast.warning(this.$t('users.register.failure'));
-          this.errors = this.errorMessages(response.data.registerUser.errors);
-        }
-      }).catch(error => {
-        this.$toast.warning(error);
-        this.errors = [error];
-      });
+        .then(response => {
+          if (response.success) {
+            this.setUser(response.user);
+            this.$router.push({ name: 'home' });
+            this.$toast.info(this.$t('users.register.success'));
+          } else {
+            this.$toast.warning(this.$t('users.register.failure'));
+            this.errors = this.errorMessages(response.data.registerUser.errors);
+          }
+        }).catch(error => {
+          this.$toast.warning(error);
+          this.errors = [error];
+        });
     },
   },
 };
